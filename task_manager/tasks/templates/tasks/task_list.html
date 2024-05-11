@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task List</title>
+</head>
+<body>
+    <h1>Task List</h1>
+    
+    <!-- Add filter links for task status -->
+    <a href="{% url 'task_list' %}">All tasks that are listed</a> 
+    <br></br>|
+    <a href="{% url 'task_list_by_status' 'To Do' %}">Tasks that need To Do"</a> |
+    <br></br>|
+    <a href="{% url 'task_list_by_status' 'In Progress' %}">Tasks those are In Progress</a> |
+    <br></br>|
+    <a href="{% url 'task_list_by_status' 'Done' %}">Tasks those are completed
+
+    </a>
+
+    <!-- Loop through tasks based on status -->
+    {% for task in tasks %}
+        <p>{{ task.title }} - {{ task.status }}</p>
+    {% empty %}
+        <p>No tasks found.</p>
+    {% endfor %}
+    
+    <a href="{% url 'task_create' %}">Create New Task</a>
+</body>
+</html>
